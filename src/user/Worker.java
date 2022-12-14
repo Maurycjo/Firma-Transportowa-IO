@@ -9,8 +9,13 @@ import java.util.Scanner;
 public class Worker extends AUser
 {
     private ArrayList<Client> clientList = new ArrayList<>();
-    public Worker(ProductStorage productStorage) {
-        super(productStorage);
+
+    public Worker(String name, String surname, ProductStorage productStorage) {
+        super(name, surname, productStorage);
+    }
+
+    public void setClientList(ArrayList<Client> clientList) {
+        this.clientList = clientList;
     }
 
     public void addClientToClientList(Client c)
@@ -37,6 +42,8 @@ public class Worker extends AUser
         float price = scanner.nextFloat();
 
         Product product = new Product(name, category, quantity, price);
+        productStorage.addProductToStorage(product);
+        scanner.close();
     }
 
     public void delProduct()
@@ -55,7 +62,12 @@ public class Worker extends AUser
         {
             productStorage.delProductByIndex(idx);
         }
-
+        
+        scanner.close();
     }
 
+    @Override
+    public String toString() {
+        return "Worker: " + this.getName() + " " + this.getSurname();
+    }
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class ProductStorage
 {
     private ArrayList<Product> productList = new ArrayList<Product>();
+
     public void showAllProducts()
     {
         for(int i=0; i<productList.size(); i++)
@@ -15,8 +16,13 @@ public class ProductStorage
     public void addProductToStorage(Product product)
     {
         this.productList.add(product);
-
     }
+
+    public void delProductByIndex(int idx)
+    {
+        productList.remove(idx);
+    }
+
     public Product getProductByIndex(int idx)
     {
         return productList.get(idx);
@@ -25,9 +31,5 @@ public class ProductStorage
     public int howManyProducts()
     {
         return productList.size();
-    }
-    public void delProductByIndex(int idx)
-    {
-        productList.remove(idx);
     }
 }

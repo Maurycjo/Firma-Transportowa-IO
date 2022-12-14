@@ -8,6 +8,13 @@ import java.util.Scanner;
 
 public class Client extends AUser
 {
+    private float saldo = 0;    //niezaimplementowane
+    private ArrayList<Order> orderList = new ArrayList<>();
+
+    public Client(String name, String surname, ProductStorage productStorage) {
+        super(name, surname, productStorage);
+    }
+
     public float getSaldo() {
         return saldo;
     }
@@ -16,33 +23,32 @@ public class Client extends AUser
         this.saldo = saldo;
     }
 
-    private float saldo;    //niezaimplementowane
-    private ArrayList<Order> orderList;
-
-    public Client(ProductStorage productStorage) {
-        super(productStorage);
-    }
-
-    @Override
-    public String toString() {
-        return this.getName() + this.getSurname();
-    }
-
     public void createOrder()
     {
         int idx;
         int quan;
         String cond;
+        boolean leave = true;
         ArrayList<Product> productInOrder = new ArrayList<>();
 
-        while (true)
+        Scanner scanner = new Scanner(System.in);
+
+        while (leave)
         {
-
             productStorage.showAllProducts();
-
             System.out.println("Select product by index");
-            Scanner scanner = new Scanner(System.in);
             idx = scanner.nextInt();
+
+            if (idx < 0 || idx >= productStorage.howManyProducts()) {
+                System.out.println("Wrong index, select again");
+                continue;
+            }
+
+            if(productStorage.getProductByIndex(idx).getQuantity() <= 0) {
+                System.out.println("Product out of stock!");
+                continue;
+            }
+
             Product originalProduct = productStorage.getProductByIndex(idx);
             Product product = new Product(originalProduct.getName(), originalProduct.getCategory(), originalProduct.getPrice());
 
@@ -58,7 +64,6 @@ public class Client extends AUser
 
             }
 
-            System.out.println("halo");
             product.setQuantity(quan);
             originalProduct.setQuantity(originalProduct.getQuantity()-quan);
             //do poprawy jezeli dwa razy ten sam product
@@ -73,17 +78,29 @@ public class Client extends AUser
                 break;
         }
 
+        scanner.close();
+
         Order order = new Order(productInOrder);
+
         orderList.add(order);
     }
 
     public void displayOrders()
     {
-        for(int i = 0 ;i < orderList.size(); i++)
-        {
-            System.out.println("Order " + i);
-            orderList.get(i).displayProductInOrders();
+        if(orderList.size() <= 0){
+            System.out.println("No orders!");  
+        } 
+        else {
+            for(int i = 0 ; i < orderList.size(); i++)
+            {
+                System.out.println("Order " + i);
+                orderList.get(i).displayProductInOrders();
+            }
         }
     }
 
+    @Override
+    public String toString() {
+        return "Client: " + this.getName() + " " +  this.getSurname();
+    }
 }

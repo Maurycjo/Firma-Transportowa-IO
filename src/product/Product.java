@@ -2,48 +2,52 @@ package product;
 
 public class Product implements IProduct
 {
-
     private String name;
     private String category;
     private int quantity;
     private float price;
 
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
+    @Override
     public String getName() {
         return name;
     }
 
-    public Product(String name, String category, int quantity, float price) {
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    @Override
+    public String getCategory() {
+        return category;
+    }
+
+    @Override
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @Override
+    public int getQuantity() {
+        return quantity;
+    }
+
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public float getPrice() {
+        return price;
+    }
+
+    @Override
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public Product(String name, String category, int quantity, float price) {
         this.name = name;
         this.category = category;
         this.quantity = quantity;
@@ -58,6 +62,6 @@ public class Product implements IProduct
 
     @Override
     public String toString() {
-        return this.name;
+        return this.name + " quantity: " + this.quantity;
     }
 }

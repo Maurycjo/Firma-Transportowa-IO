@@ -6,18 +6,19 @@ public class Order
 {
     private ArrayList<Product> productList = new ArrayList<Product>();
     private float price;
-    public void setPrice(float price) {
-        this.price = price;
-    }
+
     public float getPrice() {
         return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public Order(ArrayList<Product> productList)
     {
         this.productList = productList;
         calculatePrice();
-
     }
 
     private void calculatePrice()
@@ -38,5 +39,4 @@ public class Order
             System.out.println(i + " " +  productList.get(i).toString());
         }
     }
-
 }
