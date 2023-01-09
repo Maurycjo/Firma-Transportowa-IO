@@ -18,6 +18,17 @@ public class ProductStorage
         this.productList.add(product);
     }
 
+    public boolean checkIfNameExist(String name)
+    {
+        for(Product product : productList)
+        {
+            if(product.getName().equals(name)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void delProductByIndex(int idx)
     {
         productList.remove(idx);

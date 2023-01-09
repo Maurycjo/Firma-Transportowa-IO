@@ -2,24 +2,26 @@ import java.util.ArrayList;
 
 import product.Product;
 import product.ProductStorage;
+import user.AUser;
 import user.Client;
 import user.Worker;
 
 public class Main {
+    public static AUser loggedUser;
+    public static ArrayList<Client> clientList  = new ArrayList<>();
+    public static ArrayList<Worker> workerList = new ArrayList<>();
     public static void main(String[] args)
     {
-        ProductStorage ps = new ProductStorage();
-        ps.addProductToStorage(new Product("Ziemniaki", "zime", 1000, 50));
-        ps.addProductToStorage(new Product("cebula", "polska", 100, 34));
-        ps.addProductToStorage(new Product("Chleb", "niewarzywo", 10, 500));
+        ProductStorage storage = new ProductStorage();
+        storage.addProductToStorage(new Product("Ziemniaki", "zime", 1000, 50));
+        storage.addProductToStorage(new Product("cebula", "polska", 100, 34));
+        storage.addProductToStorage(new Product("Chleb", "niewarzywo", 10, 500));
 
-        ArrayList<Client> clientList  = new ArrayList<>();
-        clientList.add(new Client("Bartosz", "Jakis", ps));
-        clientList.add(new Client("Joe", "Doe", ps));
-        clientList.add(new Client("Parizad", "Uday", ps));
+        clientList.add(new Client("Bartosz", "Jakis", storage));
+        clientList.add(new Client("Joe", "Doe", storage));
+        clientList.add(new Client("Parizad", "Uday", storage));
 
-        ArrayList<Worker> workerList = new ArrayList<>();
-        workerList.add(new Worker("Bob", "Pracownik", ps));
+        workerList.add(new Worker("Bob", "Pracownik", storage));
         workerList.get(0).setClientList(clientList);
 
         for (Client client : clientList) {
@@ -30,16 +32,22 @@ public class Main {
            System.out.println(worker); 
         }
 
-        // Usecase
-        Client c = clientList.get(0);
-        Worker w = workerList.get(0);
+        //loggedUser = clientList.get(0);
+        loggedUser = workerList.get(0);
 
-        // for client
-        c.displayOrders();
-        // c.createOrder();
-        // c.displayOrders();
+        if(loggedUser instanceof Client){
+            clientView((Client) loggedUser);
+        } else if(loggedUser instanceof Worker) {
+            workerView((Worker) loggedUser);
+        }
+    }
 
-        // for worker
-        w.displayClientList();
+    public static void clientView(Client loggedClient){
+        loggedClient.displayOrders();
+    }
+
+    public static void workerView(Worker loggedWorker){
+        loggedWorker.displayClientList();
+        loggedWorker.productStorage.showAllProducts();
     }
 }

@@ -32,7 +32,7 @@ public class Order
         this.price = sum;
     }
 
-    public void displayProductInOrders()
+    public void displayProductsInOrder()
     {
         for(int i=0; i<productList.size(); i++)
         {

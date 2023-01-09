@@ -4,7 +4,7 @@ import product.ProductStorage;
 
 public abstract class AUser implements IUser
 {
-    protected ProductStorage productStorage;
+    public ProductStorage productStorage;
     private String name;
     private String surname;
 

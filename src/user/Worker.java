@@ -18,10 +18,10 @@ public class Worker extends AUser
         this.clientList = clientList;
     }
 
-    public void addClientToClientList(Client c)
+    public void addClientToClientList(Client client)
     {
         //tworzenie bazy clientow w main bedzie
-        clientList.add(c);
+        clientList.add(client);
     }
 
     public void displayClientList()
@@ -37,13 +37,17 @@ public class Worker extends AUser
         Scanner scanner = new Scanner(System.in);
 
         String name = scanner.nextLine();
-        String category = scanner.nextLine();
-        int quantity = scanner.nextInt();
-        float price = scanner.nextFloat();
+        boolean leave = productStorage.checkIfNameExist(name);
 
-        Product product = new Product(name, category, quantity, price);
-        productStorage.addProductToStorage(product);
-        scanner.close();
+        if(leave){
+            String category = scanner.nextLine();
+            int quantity = scanner.nextInt();
+            float price = scanner.nextFloat();
+
+            Product product = new Product(name, category, quantity, price);
+            productStorage.addProductToStorage(product);
+            scanner.close();
+        }
     }
 
     public void delProduct()
@@ -54,7 +58,8 @@ public class Worker extends AUser
         Scanner scanner = new Scanner(System.in);
 
         int idx = scanner.nextInt();
-        if(idx < 0 || idx >=productStorage.howManyProducts())
+        int checkIndex = productStorage.howManyProducts();
+        if(idx < 0 || idx >= checkIndex)
         {
             System.out.println("Wrong index");
         }

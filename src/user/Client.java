@@ -8,25 +8,18 @@ import java.util.Scanner;
 
 public class Client extends AUser
 {
-    private float saldo = 0;    //niezaimplementowane
     private ArrayList<Order> orderList = new ArrayList<>();
 
     public Client(String name, String surname, ProductStorage productStorage) {
         super(name, surname, productStorage);
     }
 
-    public float getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(float saldo) {
-        this.saldo = saldo;
-    }
-
     public void createOrder()
     {
         int idx;
         int quan;
+        int maxProducts;
+        int checkQuan;
         String cond;
         boolean leave = true;
         ArrayList<Product> productInOrder = new ArrayList<>();
@@ -39,12 +32,16 @@ public class Client extends AUser
             System.out.println("Select product by index");
             idx = scanner.nextInt();
 
-            if (idx < 0 || idx >= productStorage.howManyProducts()) {
+            
+            maxProducts = productStorage.howManyProducts();            
+            if (idx < 0 || idx >= maxProducts) {
                 System.out.println("Wrong index, select again");
                 continue;
             }
+            
+            checkQuan = productStorage.getProductByIndex(idx).getQuantity();
 
-            if(productStorage.getProductByIndex(idx).getQuantity() <= 0) {
+            if(checkQuan<= 0) {
                 System.out.println("Product out of stock!");
                 continue;
             }
@@ -61,7 +58,6 @@ public class Client extends AUser
             {
                 System.out.println("Wrong quantity, please choose between <0, " + originalProduct.getQuantity() + ">");
                 quan = scanner.nextInt();
-
             }
 
             product.setQuantity(quan);
@@ -94,7 +90,7 @@ public class Client extends AUser
             for(int i = 0 ; i < orderList.size(); i++)
             {
                 System.out.println("Order " + i);
-                orderList.get(i).displayProductInOrders();
+                orderList.get(i).displayProductsInOrder();
             }
         }
     }
