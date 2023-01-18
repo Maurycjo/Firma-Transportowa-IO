@@ -21,7 +21,7 @@ public class Order
         calculatePrice();
     }
 
-    private void calculatePrice()
+    public void calculatePrice()
     {
         float sum = 0;
         for (Product var : productList)
