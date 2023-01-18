@@ -34,7 +34,10 @@ public class Product implements IProduct
 
     @Override
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        if(quantity < 0)
+            throw new ArithmeticException("Quantity have to be greater than 0!");
+        else
+            this.quantity = quantity;
     }
 
     @Override
