@@ -8,6 +8,10 @@ import java.util.Scanner;
 
 public class Client extends AUser
 {
+    public ArrayList<Order> getOrderList() {
+        return orderList;
+    }
+
     private ArrayList<Order> orderList = new ArrayList<>();
 
     public Client(String name, String surname, ProductStorage productStorage) {

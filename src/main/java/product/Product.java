@@ -29,15 +29,17 @@ public class Product implements IProduct
 
     @Override
     public int getQuantity() {
+
         return quantity;
     }
 
     @Override
-    public void setQuantity(int quantity) {
+    public void setQuantity(int quantity){
         if(quantity < 0)
             throw new ArithmeticException("Quantity have to be greater than 0!");
         else
-            this.quantity = quantity;
+                this.quantity = quantity;
+
     }
 
     @Override
@@ -47,14 +49,14 @@ public class Product implements IProduct
 
     @Override
     public void setPrice(float price) {
-        this.price = price;
+            this.price = price;
     }
 
     public Product(String name, String category, int quantity, float price) {
-        this.name = name;
-        this.category = category;
-        this.quantity = quantity;
-        this.price = price;
+        setName(name);
+        setCategory(category);
+        setPrice(price);
+        setQuantity(quantity);
     }
 
     public Product(String name, String category, float price) {

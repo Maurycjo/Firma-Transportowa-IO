@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Order
 {
+    public ArrayList<Product> getProductList() {
+        return productList;
+    }
+
     private ArrayList<Product> productList = new ArrayList<Product>();
     private float price;
 
@@ -32,11 +36,21 @@ public class Order
         this.price = sum;
     }
 
+
     public void displayProductsInOrder()
     {
         for(int i=0; i<productList.size(); i++)
         {
             System.out.println(i + " " +  productList.get(i).toString());
         }
+    }
+
+    public int howManyProducts()
+    {
+        return productList.size();
+    }
+
+    public void addProductToOrder(Product product){
+        productList.add(product);
     }
 }

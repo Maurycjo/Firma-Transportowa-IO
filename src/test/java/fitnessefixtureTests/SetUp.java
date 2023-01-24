@@ -2,6 +2,7 @@ package fitnessefixtureTests;
 
 import Aplication.App;
 import fit.Fixture;
+import product.Product;
 import product.ProductStorage;
 
 public class SetUp extends Fixture {
@@ -11,6 +12,7 @@ public class SetUp extends Fixture {
     public SetUp(){
       //  storage = new ProductStorage();
         app = new App();
+        app.createUsers();
 
     }
 }

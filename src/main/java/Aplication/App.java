@@ -12,6 +12,7 @@ import user.Worker;
 public class App {
     public static AUser loggedUser;
     public static ArrayList<Client> clientList  = new ArrayList<>();
+
     public static ArrayList<Worker> workerList = new ArrayList<>();
     public static ProductStorage storage = new ProductStorage();
     public static void main(String[] args) throws IllegalFormatCodePointException
@@ -21,13 +22,8 @@ public class App {
         storage.addProductToStorage(new Product("cebula", "polska", 100, 34));
         storage.addProductToStorage(new Product("Chleb", "niewarzywo", 10, 500));
 
-        clientList.add(new Client("Bartosz", "Jakis", storage));
-        clientList.add(new Client("Joe", "Doe", storage));
-        clientList.add(new Client("Parizad", "Uday", storage));
 
-        workerList.add(new Worker("Bob", "Pracownik", storage));
-        workerList.get(0).setClientList(clientList);
-
+        createUsers();
         //loggedUser = clientList.get(0);
         loggedUser = workerList.get(0);
 
@@ -57,4 +53,12 @@ public class App {
         storage.addProductToStorage(new Product(name, category, quantity, price));
     }
 
+    public static void createUsers()
+    {
+        clientList.add(new Client("Bartosz", "Jakis", storage));
+        clientList.add(new Client("Joe", "Doe", storage));
+        clientList.add(new Client("Parizad", "Uday", storage));
+        workerList.add(new Worker("Bob", "Pracownik", storage));
+        workerList.get(0).setClientList(clientList);
+    }
 }
