@@ -1,8 +1,9 @@
-package user;
+package junit5.user;
 
 import org.junit.jupiter.api.Test;
 import product.Product;
 import product.ProductStorage;
+import user.Worker;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +16,7 @@ class AddProductTestInWorker {
         Worker worker = new Worker("Maurycy", "Niewczas", storage);
 
         storage.addProductToStorage(new Product("cebula", "polska", 100, 34));
-        storage.addProductToStorage(new Product("Chleb", "niewarzywo", 10, 500));
+        storage.addProductToStorage(new Product("Chleb", "pieczywo", 10, 500));
 
         assertEquals("cebula", storage.getProductByIndex(0).getName());
         assertEquals("polska", storage.getProductByIndex(0).getCategory());

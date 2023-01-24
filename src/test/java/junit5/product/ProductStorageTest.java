@@ -1,6 +1,8 @@
-package product;
+package junit5.product;
 
+import data.DataTest;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import data.DataTest;
 
 class ProductStorageTest {
     DataTest dataTest;
@@ -35,7 +39,8 @@ class ProductStorageTest {
 
     @Test
     void testAddProductToStorage() {
-
+        dataTest.productStorage.addProductToStorage(dataTest.newProduct);
+        assertEquals(false,dataTest.productStorage.checkIfNameExist("Marchewka"));
     }
 
     @Test
@@ -46,6 +51,9 @@ class ProductStorageTest {
 
     @Test
     void testDelProductByIndex() {
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+            dataTest.productStorage.delProductByIndex(5);
+        });
     }
 
     @Test

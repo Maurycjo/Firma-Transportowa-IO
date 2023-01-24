@@ -1,6 +1,7 @@
 package product;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 
 public class ProductStorage
 {
@@ -13,11 +14,13 @@ public class ProductStorage
             System.out.println(i + " " +  productList.get(i).toString());
         }
     }
-    public void addProductToStorage(Product product) {
+
+    public void addProductToStorage(Product product) throws IllegalFormatCodePointException
+    {
         this.productList.add(product);
     }
 
-    public boolean checkIfNameExist(String name)
+    public boolean checkIfNameExist(String name) throws IllegalFormatCodePointException
     {
         for(Product product : productList)
         {
@@ -28,17 +31,17 @@ public class ProductStorage
         return true;
     }
 
-    public void delProductByIndex(int idx)
+    public void delProductByIndex(int idx) throws IllegalFormatCodePointException
     {
         productList.remove(idx);
     }
 
-    public Product getProductByIndex(int idx)
+    public Product getProductByIndex(int idx) throws IllegalFormatCodePointException
     {
         return productList.get(idx);
     }
 
-    public int howManyProducts()
+    public int howManyProducts() throws IllegalFormatCodePointException
     {
         return productList.size();
     }

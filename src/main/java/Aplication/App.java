@@ -1,6 +1,7 @@
 package Aplication;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 
 import product.Product;
 import product.ProductStorage;
@@ -13,7 +14,7 @@ public class App {
     public static ArrayList<Client> clientList  = new ArrayList<>();
     public static ArrayList<Worker> workerList = new ArrayList<>();
     public static ProductStorage storage = new ProductStorage();
-    public static void main(String[] args)
+    public static void main(String[] args) throws IllegalFormatCodePointException
     {
 
         storage.addProductToStorage(new Product("Ziemniaki", "zime", 1000, 50));
@@ -27,14 +28,6 @@ public class App {
         workerList.add(new Worker("Bob", "Pracownik", storage));
         workerList.get(0).setClientList(clientList);
 
-        for (Client client : clientList) {
-            System.out.println(client);
-        }    
-
-        for (Worker worker : workerList) {
-           System.out.println(worker); 
-        }
-
         //loggedUser = clientList.get(0);
         loggedUser = workerList.get(0);
 
@@ -45,11 +38,13 @@ public class App {
         }
     }
 
-    public static void clientView(Client loggedClient){
+    public static void clientView(Client loggedClient) throws IllegalFormatCodePointException
+    {
         loggedClient.displayOrders();
     }
 
-    public static void workerView(Worker loggedWorker){
+    public static void workerView(Worker loggedWorker) throws IllegalFormatCodePointException
+    {
         loggedWorker.displayClientList();
         loggedWorker.productStorage.showAllProducts();
     }
