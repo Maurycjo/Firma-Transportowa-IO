@@ -3,14 +3,13 @@ package product;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import fit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OrderTest extends ColumnFixture{
+class OrderTest{
     DataTest dataTest;
 
     @BeforeEach

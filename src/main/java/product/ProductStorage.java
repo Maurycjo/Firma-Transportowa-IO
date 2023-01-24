@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ProductStorage
 {
-    private ArrayList<Product> productList = new ArrayList<Product>();
+    public ArrayList<Product> productList = new ArrayList<Product>();
 
     public void showAllProducts()
     {
@@ -13,8 +13,7 @@ public class ProductStorage
             System.out.println(i + " " +  productList.get(i).toString());
         }
     }
-    public void addProductToStorage(Product product)
-    {
+    public void addProductToStorage(Product product) {
         this.productList.add(product);
     }
 

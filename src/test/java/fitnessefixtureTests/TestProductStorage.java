@@ -5,7 +5,7 @@ import product.Product;
 import java.util.IllegalFormatCodePointException;
 
 
-public class TestAddProductToStorage extends ColumnFixture{
+public class TestProductStorage extends ColumnFixture{
 
     public void setName(String name) {
         this.name = name;
@@ -41,7 +41,7 @@ public class TestAddProductToStorage extends ColumnFixture{
    public boolean addProductToStorage() throws IllegalFormatCodePointException {
        int s1 = howManyProducts();
     try {
-        SetUp.storage.addProductToStorage(new Product(name, category, quantity, price));
+        SetUp.app.storage.addProductToStorage(new Product(name, category, quantity, price));
         int s2 = howManyProducts();
         return (s1 != s2);
         } catch(IllegalFormatCodePointException e){}
@@ -53,13 +53,18 @@ public class TestAddProductToStorage extends ColumnFixture{
        if(indexToRemove<0||indexToRemove>=howManyProducts()) {
            return false;
        }
-       SetUp.storage.delProductByIndex(indexToRemove);
+       SetUp.app.storage.delProductByIndex(indexToRemove);
 
        return true;
    }
 
+   public boolean checkIfNameExist()
+   {
+       return !SetUp.app.storage.checkIfNameExist(name);
+   }
+
    public int howManyProducts(){
-       return SetUp.storage.howManyProducts();
+       return SetUp.app.storage.howManyProducts();
    }
    public int getNumber()
    {

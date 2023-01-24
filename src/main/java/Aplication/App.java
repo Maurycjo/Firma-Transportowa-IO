@@ -1,3 +1,5 @@
+package Aplication;
+
 import java.util.ArrayList;
 
 import product.Product;
@@ -10,10 +12,10 @@ public class App {
     public static AUser loggedUser;
     public static ArrayList<Client> clientList  = new ArrayList<>();
     public static ArrayList<Worker> workerList = new ArrayList<>();
-    public static ProductStorage storage;
+    public static ProductStorage storage = new ProductStorage();
     public static void main(String[] args)
     {
-        storage = new ProductStorage();
+
         storage.addProductToStorage(new Product("Ziemniaki", "zime", 1000, 50));
         storage.addProductToStorage(new Product("cebula", "polska", 100, 34));
         storage.addProductToStorage(new Product("Chleb", "niewarzywo", 10, 500));
@@ -53,6 +55,11 @@ public class App {
     }
     public ProductStorage getProductStorage() {
         return storage;
+    }
+
+    public void addProductToStorage(String name, String category, int quantity, float price)
+    {
+        storage.addProductToStorage(new Product(name, category, quantity, price));
     }
 
 }
