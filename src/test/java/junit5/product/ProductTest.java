@@ -1,12 +1,12 @@
-package product;
+package junit5.product;
 
-import com.sun.jdi.event.ExceptionEvent;
+import data.DataTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProductTest {
     DataTest dataTest;
