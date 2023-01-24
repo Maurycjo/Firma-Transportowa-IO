@@ -6,13 +6,14 @@ import user.AUser;
 import user.Client;
 import user.Worker;
 
-public class Main {
+public class App {
     public static AUser loggedUser;
     public static ArrayList<Client> clientList  = new ArrayList<>();
     public static ArrayList<Worker> workerList = new ArrayList<>();
+    public static ProductStorage storage;
     public static void main(String[] args)
     {
-        ProductStorage storage = new ProductStorage();
+        storage = new ProductStorage();
         storage.addProductToStorage(new Product("Ziemniaki", "zime", 1000, 50));
         storage.addProductToStorage(new Product("cebula", "polska", 100, 34));
         storage.addProductToStorage(new Product("Chleb", "niewarzywo", 10, 500));
@@ -50,4 +51,8 @@ public class Main {
         loggedWorker.displayClientList();
         loggedWorker.productStorage.showAllProducts();
     }
+    public ProductStorage getProductStorage() {
+        return storage;
+    }
+
 }
